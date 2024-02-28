@@ -155,11 +155,15 @@ export function useLiveImage(shapeId: TLShapeId) {
 				}
 				const blobPromise = _getSvgAsImage(svg, editor.environment.isSafari, _canvas, _ctx, {
 					type: 'jpeg',
-					quality: 1,
+					quality: 0.5,
 					scale: 512 / frame.props.w,
+					// scale: 256 / frame.props.w,
 				})
 
 				blobPromise.then(async (blob) => {
+					// cancel if stale:
+					if (iteration <= finishedIteration) return
+
 					if (!blob) {
 						console.error('No image')
 						updateGeneratedImage(editor, frame.id, '')
@@ -185,12 +189,18 @@ export function useLiveImage(shapeId: TLShapeId) {
 					send({
 						prompt,
 						image: data,
-						strength: 0.9,
 						seed: 42,
 						enable_safety_checks: false,
-						num_inference_steps: 3,
 						guidance_scale: 1.0,
 						request_id: shapeId,
+
+						//--- FOR DOODLING ON IMAGES ---
+						// strength: 0.666666,
+						// num_inference_steps: 3,
+
+						//--- FOR DRAWING FROM SCRATCH ---
+						strength: 0.71,
+						num_inference_steps: 5,
 					})
 
 					// cancel if stale:
