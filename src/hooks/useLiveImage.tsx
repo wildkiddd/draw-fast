@@ -188,7 +188,7 @@ export function useLiveImage(
 					image_url: imageDataUri,
 					sync_mode: true,
 					strength: 0.65,
-					seed: Math.abs(random() * 10000), // TODO make this configurable in the UI
+					seed: 42, // TODO make this configurable in the UI
 					enable_safety_checks: false,
 				})
 				// cancel if stale:
