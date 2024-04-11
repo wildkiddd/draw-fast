@@ -50,6 +50,7 @@ export function LiveImageProvider({ children }: { children: React.ReactNode }) {
 
 		const _connection = fal.realtime.connect<LCMInput, LCMOutput>(
 			'fal-ai/sd-turbo-real-time-high-fps-msgpack-a10g',
+			// '110602490-lcm-sd15-i2i',
 			{
 				connectionKey: 'draw-faster',
 				throttleInterval: 0,
@@ -199,8 +200,11 @@ export function useLiveImage(shapeId: TLShapeId) {
 						// num_inference_steps: 3,
 
 						//--- FOR DRAWING FROM SCRATCH ---
-						strength: 0.9,
+						strength: 0.6666666666666667,
 						num_inference_steps: 3,
+
+						// strength: 0.7,
+						// num_inference_steps: 3,
 					})
 
 					// cancel if stale:
