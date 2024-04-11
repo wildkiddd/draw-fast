@@ -195,12 +195,12 @@ export function useLiveImage(shapeId: TLShapeId) {
 						request_id: shapeId,
 
 						//--- FOR DOODLING ON IMAGES ---
-						strength: 0.666666,
-						num_inference_steps: 3,
+						// strength: 0.666666,
+						// num_inference_steps: 3,
 
 						//--- FOR DRAWING FROM SCRATCH ---
-						// strength: 0.71,
-						// num_inference_steps: 5,
+						strength: 0.9,
+						num_inference_steps: 3,
 					})
 
 					// cancel if stale:
